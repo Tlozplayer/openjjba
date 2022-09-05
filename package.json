@@ -32,6 +32,8 @@
 		"@rbxts/profileservice": "^1.4.1",
 		"@rbxts/rewire": "^0.3.0",
 		"@rbxts/roact": "^1.4.2-ts.3",
+		"@rbxts/roact-hooked": "^2.1.2",
+		"@rbxts/roact-hooked-plus": "^1.2.0",
 		"@rbxts/services": "^1.5.1",
 		"@rbxts/t": "^3.0.0"
 	}
