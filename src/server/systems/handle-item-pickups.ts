@@ -19,7 +19,8 @@ function HandleItemPickups(world: World) {
 			const data = world.get(playerEntity, PlayerData);
 			if (!data) return;
 
-			data.patch({ inventory: [...data.inventory, { item: item.id }] });
+			// TODO: Check if the player is near enough to pick the item up.
+			world.insert(playerEntity, data.patch({ inventory: [...data.inventory, { item: item.id }] }));
 			world.despawn(entityId);
 		}
 	}

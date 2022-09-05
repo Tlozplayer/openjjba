@@ -26,3 +26,9 @@ export const ItemToModel: { [index in Item]: ItemModel } = {
 	[Item.Arrow]: ReplicatedStorage.assets.items.PocketWatch,
 	[Item.StandDisc]: ReplicatedStorage.assets.items.Disc,
 };
+
+export const ItemToName: { [index in Item]: string } = {
+	[Item.ArrowFragment]: "Arrow Fragment",
+	[Item.StandDisc]: "Disk",
+	[Item.Arrow]: "Stand Arrow",
+};
