@@ -10,7 +10,7 @@
 	"keywords": [],
 	"author": {
 		"name": "Christian Fletcher",
-		"email": "mistrustfully@gmail.com",
+		"email": "mistrustfully@gmail.com"
 	},
 	"license": "GPL-3.0",
 	"devDependencies": {
