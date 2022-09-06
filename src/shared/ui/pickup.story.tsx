@@ -7,22 +7,26 @@ import Pickup from "./pickup";
 
 export = (mountpoint: Instance) => {
 	const store = CreateUIStore();
+
 	const tree = Roact.mount(
 		<StoreProvider store={store}>
 			<Pickup />
 		</StoreProvider>,
 		mountpoint,
 	);
+
 	const connection = UserInputService.InputChanged.Connect((i) => {
 		if (i.UserInputType === Enum.UserInputType.MouseMovement) {
 			store.dispatch(
 				UpdatePickupUI({
 					MousePosition: UDim2.fromOffset(i.Position.X, i.Position.Y),
 					HoveredName: "Stand Disk",
+					Visible: true,
 				}),
 			);
 		}
 	});
+
 	return () => {
 		Roact.unmount(tree);
 		connection.Disconnect();

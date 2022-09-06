@@ -1,8 +1,7 @@
 import { AnyEntity, useEvent, World } from "@rbxts/matter";
-import { Players, UserInputService, Workspace } from "@rbxts/services";
-import { ItemComponent, LocalPlayerComponent, PlayerComponent, Renderable } from "shared/components";
+import { Players, UserInputService } from "@rbxts/services";
+import { ItemComponent, LocalPlayerComponent, Renderable } from "shared/components";
 import Remotes from "shared/remotes";
-import { UIStore } from "shared/rodux/ui-store";
 import { UpdatePickupUI } from "shared/rodux/ui-store/pickup-reducer";
 import { Item, ItemToName } from "shared/types/items";
 import { IClientState } from "shared/types/state";
@@ -18,7 +17,7 @@ function PickUpItems(world: World, state: IClientState) {
 		mousePosition = UDim2.fromOffset(inputevent.Position.X, inputevent.Position.Y);
 
 		let foundItem = false;
-		for (const [_, character] of world.query(Renderable, LocalPlayerComponent)) {
+		for (const [_, _character] of world.query(Renderable, LocalPlayerComponent)) {
 			const hitObject = Players.LocalPlayer.GetMouse().Target; // TODO: Use raycasts rather than .Target?
 			if (hitObject === undefined) break;
 
@@ -60,7 +59,11 @@ function PickUpItems(world: World, state: IClientState) {
 
 	const itemName = cachedItem ? ItemToName[cachedItem[1]] : undefined;
 	state.UIStore.dispatch(
-		UpdatePickupUI({ HoveredName: itemName === undefined ? "" : itemName, MousePosition: mousePosition }),
+		UpdatePickupUI({
+			HoveredName: itemName,
+			MousePosition: mousePosition,
+			Visible: itemName !== undefined ? true : false,
+		}),
 	);
 }
 

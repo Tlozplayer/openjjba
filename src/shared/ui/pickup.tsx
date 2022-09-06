@@ -5,12 +5,12 @@ import { useGroupMotor, useSingleMotor } from "@rbxts/roact-hooked-plus";
 import { useSelector } from "@rbxts/roact-rodux-hooked";
 import { IUIStore } from "shared/rodux/ui-store";
 
-let cachedName = "";
 function Pickup(): Element {
 	const PickupUI = useSelector((state: IUIStore) => state.Pickup);
 
 	const position = PickupUI.MousePosition;
 	const itemName = PickupUI.HoveredName;
+	const visible = PickupUI.Visible;
 
 	const [positionBinding, setPositionGoal] = useGroupMotor([0, 0]);
 
@@ -28,14 +28,10 @@ function Pickup(): Element {
 	const [transparencyBinding, setTransparencyGoal] = useSingleMotor(1);
 
 	setTransparencyGoal(
-		new Spring(itemName === "" ? 1 : 0, {
+		new Spring(visible ? 0 : 1, {
 			frequency: 8,
 		}),
 	);
-
-	if (itemName !== "") {
-		cachedName = itemName;
-	}
 
 	return (
 		<screengui>
@@ -45,12 +41,12 @@ function Pickup(): Element {
 				Size={UDim2.fromOffset(50, 50)}
 				BackgroundTransparency={1}
 				AnchorPoint={new Vector2(0, 0)}
-				Position={positionBinding.map((v) => {
-					return UDim2.fromOffset(v[0], v[1]).add(UDim2.fromOffset(10, 10));
+				Position={positionBinding.map((position) => {
+					return UDim2.fromOffset(position[0], position[1]).add(UDim2.fromOffset(10, 10));
 				})}
 			>
 				<textlabel
-					Text={`<i>${cachedName}</i>`}
+					Text={`<i>${itemName}</i>`}
 					TextTransparency={transparencyBinding.getValue()}
 					Font={Enum.Font.GothamBold}
 					TextColor3={new Color3(0, 0, 0)}

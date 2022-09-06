@@ -5,6 +5,7 @@ export interface IUIStore {
 	Pickup: {
 		HoveredName: string;
 		MousePosition: UDim2;
+		Visible: boolean;
 	};
 }
 

@@ -2,10 +2,7 @@ import Rodux from "@rbxts/rodux";
 import { IUIStore } from ".";
 
 export interface UpdatePickupUIAction extends Rodux.Action<"UpdatePickupUI"> {
-	new: {
-		HoveredName: string;
-		MousePosition: UDim2;
-	};
+	new: Partial<IUIStore["Pickup"]>;
 }
 
 export function UpdatePickupUI(newUI: UpdatePickupUIAction["new"]): UpdatePickupUIAction {
@@ -16,10 +13,10 @@ export function UpdatePickupUI(newUI: UpdatePickupUIAction["new"]): UpdatePickup
 }
 
 export const PickupReducer = Rodux.createReducer<IUIStore["Pickup"], UpdatePickupUIAction>(
-	{ HoveredName: "None", MousePosition: UDim2.fromOffset(0, 0) },
+	{ HoveredName: "None", MousePosition: UDim2.fromOffset(0, 0), Visible: false },
 	{
-		UpdatePickupUI: (_state, action) => {
-			return { ...action.new };
+		UpdatePickupUI: (state, action) => {
+			return { ...state, ...action.new };
 		},
 	},
 );
