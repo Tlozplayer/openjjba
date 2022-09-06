@@ -65,4 +65,4 @@ function PickUpItems(world: World, state: IClientState) {
 	useRoactElement(Pickup(mousePosition, itemName), Players.LocalPlayer.FindFirstChild("PlayerGui"), "a");
 }
 
-export = PickUpItems;
+export = { system: PickUpItems, event: "render" };
