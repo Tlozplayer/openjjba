@@ -1,14 +1,11 @@
 import { AnyEntity, useEvent, World } from "@rbxts/matter";
-import Plasma from "@rbxts/plasma";
-import label from "@rbxts/plasma/src/widgets/label";
-import window from "@rbxts/plasma/src/widgets/window";
 import { Players, UserInputService, Workspace } from "@rbxts/services";
 import { ItemComponent, LocalPlayerComponent, PlayerComponent, Renderable } from "shared/components";
-import useRoactElement from "shared/hooks/useRoactElement";
 import Remotes from "shared/remotes";
+import { UIStore } from "shared/rodux/ui-store";
+import { UpdatePickupUI } from "shared/rodux/ui-store/pickup-reducer";
 import { Item, ItemToName } from "shared/types/items";
 import { IClientState } from "shared/types/state";
-import { Pickup } from "shared/ui/pickup";
 
 const PickupItem = Remotes.Client.Get("PickupItem");
 
@@ -62,7 +59,9 @@ function PickUpItems(world: World, state: IClientState) {
 	}
 
 	const itemName = cachedItem ? ItemToName[cachedItem[1]] : undefined;
-	useRoactElement(Pickup(mousePosition, itemName), Players.LocalPlayer.FindFirstChild("PlayerGui"), "a");
+	state.UIStore.dispatch(
+		UpdatePickupUI({ HoveredName: itemName === undefined ? "" : itemName, MousePosition: mousePosition }),
+	);
 }
 
 export = { system: PickUpItems, event: "render" };

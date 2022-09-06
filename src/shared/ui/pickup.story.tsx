@@ -1,12 +1,26 @@
 import Roact from "@rbxts/roact";
+import { StoreProvider } from "@rbxts/roact-rodux-hooked";
 import { UserInputService } from "@rbxts/services";
-import { Pickup } from "./pickup";
+import { CreateUIStore } from "shared/rodux/ui-store";
+import { UpdatePickupUI } from "shared/rodux/ui-store/pickup-reducer";
+import Pickup from "./pickup";
 
 export = (mountpoint: Instance) => {
-	const tree = Roact.mount(Pickup(UDim2.fromScale(0.5, 0.5), "Stand Disk"), mountpoint);
+	const store = CreateUIStore();
+	const tree = Roact.mount(
+		<StoreProvider store={store}>
+			<Pickup />
+		</StoreProvider>,
+		mountpoint,
+	);
 	const connection = UserInputService.InputChanged.Connect((i) => {
 		if (i.UserInputType === Enum.UserInputType.MouseMovement) {
-			Roact.update(tree, Pickup(UDim2.fromOffset(i.Position.X, i.Position.Y), "Stand Disk"));
+			store.dispatch(
+				UpdatePickupUI({
+					MousePosition: UDim2.fromOffset(i.Position.X, i.Position.Y),
+					HoveredName: "Stand Disk",
+				}),
+			);
 		}
 	});
 	return () => {

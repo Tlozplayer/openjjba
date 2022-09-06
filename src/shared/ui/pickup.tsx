@@ -1,51 +1,57 @@
-import { GroupMotor, SingleMotor, Spring } from "@rbxts/flipper";
+import { Spring } from "@rbxts/flipper";
 import Roact, { Element } from "@rbxts/roact";
+import { withHooks } from "@rbxts/roact-hooked";
+import { useGroupMotor, useSingleMotor } from "@rbxts/roact-hooked-plus";
+import { useSelector } from "@rbxts/roact-rodux-hooked";
+import { IUIStore } from "shared/rodux/ui-store";
 
-let old = false;
-let oldText = "";
-const motor = new SingleMotor(1);
-const [binding, setBinding] = Roact.createBinding(motor.getValue());
-motor.onStep(setBinding);
+let cachedName = "";
+function Pickup(): Element {
+	const PickupUI = useSelector((state: IUIStore) => state.Pickup);
 
-const positionMotor = new GroupMotor([0, 0]);
-const [posBinding, setPosBinding] = Roact.createBinding(positionMotor.getValue());
-positionMotor.onStep(setPosBinding);
+	const position = PickupUI.MousePosition;
+	const itemName = PickupUI.HoveredName;
 
-export function Pickup(position: UDim2, itemName?: string): Element {
-	const visible = itemName === undefined ? false : true;
-	if (visible !== old) {
-		motor.setGoal(
-			new Spring(visible ? 0 : 1, {
-				frequency: 8,
-			}),
-		);
-		old = visible;
-	}
+	const [positionBinding, setPositionGoal] = useGroupMotor([0, 0]);
 
-	if (itemName !== undefined && itemName !== oldText) {
-		oldText = itemName;
-	}
-
-	positionMotor.setGoal([
-		new Spring(position.X.Offset, { frequency: 3, dampingRatio: 1.2 }),
-		new Spring(position.Y.Offset, { frequency: 3, dampingRatio: 1.2 }),
+	setPositionGoal([
+		new Spring(position.X.Offset, {
+			frequency: 3,
+			dampingRatio: 0.5,
+		}),
+		new Spring(position.Y.Offset, {
+			frequency: 3,
+			dampingRatio: 0.5,
+		}),
 	]);
+
+	const [transparencyBinding, setTransparencyGoal] = useSingleMotor(1);
+
+	setTransparencyGoal(
+		new Spring(itemName === "" ? 1 : 0, {
+			frequency: 8,
+		}),
+	);
+
+	if (itemName !== "") {
+		cachedName = itemName;
+	}
 
 	return (
 		<screengui>
 			<imagelabel
-				ImageTransparency={binding.getValue()}
+				ImageTransparency={transparencyBinding.getValue()}
 				Image={"http://www.roblox.com/asset/?id=10833055585"}
 				Size={UDim2.fromOffset(50, 50)}
 				BackgroundTransparency={1}
 				AnchorPoint={new Vector2(0, 0)}
-				Position={posBinding.map((v) => {
+				Position={positionBinding.map((v) => {
 					return UDim2.fromOffset(v[0], v[1]).add(UDim2.fromOffset(10, 10));
 				})}
 			>
 				<textlabel
-					Text={`<i>${oldText}</i>`}
-					TextTransparency={binding.getValue()}
+					Text={`<i>${cachedName}</i>`}
+					TextTransparency={transparencyBinding.getValue()}
 					Font={Enum.Font.GothamBold}
 					TextColor3={new Color3(0, 0, 0)}
 					RichText={true}
@@ -59,3 +65,5 @@ export function Pickup(position: UDim2, itemName?: string): Element {
 		</screengui>
 	);
 }
+
+export default withHooks(Pickup);
