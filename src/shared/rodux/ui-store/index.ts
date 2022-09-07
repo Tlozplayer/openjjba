@@ -1,5 +1,6 @@
 import Rodux from "@rbxts/rodux";
 import { PickupReducer, UpdatePickupUIAction } from "./pickup-reducer";
+import { LockOnReducer, SetTargetAction } from "./lock-on-reducer";
 
 export interface IUIStore {
 	Pickup: {
@@ -7,12 +8,17 @@ export interface IUIStore {
 		MousePosition: UDim2;
 		Visible: boolean;
 	};
+
+	LockOn: {
+		Target?: Model;
+	};
 }
 
-type StoreActions = UpdatePickupUIAction;
+type StoreActions = UpdatePickupUIAction | SetTargetAction;
 
 const reducer = Rodux.combineReducers<IUIStore, StoreActions>({
 	Pickup: PickupReducer,
+	LockOn: LockOnReducer,
 });
 
 export function CreateUIStore() {

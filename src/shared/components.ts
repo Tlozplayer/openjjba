@@ -10,3 +10,5 @@ export const StandRig = component<{ model: Model }>("StandRig");
 export const MovesComponent = component<{ moves: Move[] }>("MovesComponent");
 export const ItemComponent = component<{ id: Item }>("ItemComponent");
 export const Renderable = component<{ model: Model }>("Renderable");
+export const Targetable = component<{}>("Targetable");
+export const Targeted = component<{}>("Targeted");

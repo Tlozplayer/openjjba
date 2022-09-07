@@ -56,6 +56,7 @@ function Pickup(): Element {
 					Size={UDim2.fromScale(1, 0.5)}
 					TextScaled={true}
 					BackgroundTransparency={1}
+					BorderSizePixel={0}
 				/>
 			</imagelabel>
 		</screengui>

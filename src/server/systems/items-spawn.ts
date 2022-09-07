@@ -6,7 +6,7 @@ import { Item, ItemToModel } from "shared/types/items";
 let first_run = true;
 const ItemSpawnRules: { [index in Item]: (world: World) => boolean } = {
 	[Item.StandDisc]: () => {
-		return useThrottle(3);
+		return useThrottle(300);
 	},
 
 	[Item.Arrow]: () => {

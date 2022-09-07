@@ -19,4 +19,11 @@ declare global {
 			};
 		};
 	}
+
+	interface Workspace extends WorldRoot {
+		Dummies: Folder &
+			(Model & {
+				HumanoidRootPart: BasePart;
+			})[];
+	}
 }
