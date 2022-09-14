@@ -11,6 +11,7 @@ import {
 	Renderable,
 	StandRig,
 	PlayerLike,
+	Dodging,
 } from "shared/components";
 import Remotes, { ComponentPayload } from "shared/remotes";
 import type { ComponentNames } from "shared/types/serde";
@@ -25,6 +26,7 @@ const ReplicatedComponents = new Set<ComponentCtor>([
 	StandRig,
 	ItemComponent,
 	Blocking,
+	Dodging,
 ]);
 
 function Replication(world: World): void {
