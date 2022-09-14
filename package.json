@@ -39,6 +39,7 @@
 		"@rbxts/roact-rodux-hooked": "^1.1.2",
 		"@rbxts/rodux": "^3.0.0-ts.3",
 		"@rbxts/services": "^1.5.1",
-		"@rbxts/t": "^3.0.0"
+		"@rbxts/t": "^3.0.0",
+		"roblox-ts": "^2.0.2"
 	}
 }
