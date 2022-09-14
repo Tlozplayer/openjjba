@@ -24,7 +24,7 @@
 				"$path": "out/shared"
 			},
 			"assets": {
-				"$path": "assets/"
+				"$path": "assets/shared"
 			}
 		},
 		"StarterPlayer": {
@@ -40,7 +40,8 @@
 			"$className": "Workspace",
 			"$properties": {
 				"FilteringEnabled": true
-			}
+			},
+			"$path": "assets/workspace"
 		},
 		"HttpService": {
 			"$className": "HttpService",

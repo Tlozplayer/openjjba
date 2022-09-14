@@ -45,6 +45,6 @@ export const MoveData: { [index in Moves]: Partial<Move> } = {
 	[Moves.Barrage]: {},
 };
 
-export function FMove(move: Moves, overrides: Partial<Move>) {
+export function MergeMove(move: Moves, overrides: Partial<Move>) {
 	return { ...defaults, ...MoveData[move], ...overrides };
 }

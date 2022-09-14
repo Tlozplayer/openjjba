@@ -2,7 +2,7 @@ import { AnyEntity, World } from "@rbxts/matter";
 import ProfileService from "@rbxts/profileservice";
 import { Profile } from "@rbxts/profileservice/globals";
 import { Players } from "@rbxts/services";
-import { PlayerComponent, PlayerData, Renderable } from "shared/components";
+import { PlayerComponent, PlayerData, PlayerLike, Renderable } from "shared/components";
 import { DefaultPlayerData, IPlayerData } from "shared/types/player-data";
 
 export const PlayerProfiles = new Map<Player, Profile<IPlayerData>>();
@@ -21,7 +21,7 @@ export function LoadPlayerData(world: World) {
 			if (player.IsDescendantOf(Players)) {
 				InitPlayerData(player, profile.Data);
 
-				const entity = world.spawn(PlayerData(profile.Data), PlayerComponent({ player: player }));
+				const entity = world.spawn(PlayerData(profile.Data), PlayerComponent({ player: player }), PlayerLike());
 				if (player.Character) {
 					world.insert(entity, Renderable({ model: player.Character }));
 				}

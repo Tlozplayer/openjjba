@@ -1,8 +1,8 @@
 import { World } from "@rbxts/matter";
-import { LocalPlayerComponent, PlayerComponent, Renderable, Targetable } from "shared/components";
+import { PlayerLike, Renderable, Targetable } from "shared/components";
 
 function PlayersAreTargetable(world: World) {
-	for (const [id] of world.query(Renderable, PlayerComponent).without(LocalPlayerComponent, Targetable)) {
+	for (const [id] of world.query(Renderable, PlayerLike).without(Targetable)) {
 		world.insert(id, Targetable());
 	}
 }
