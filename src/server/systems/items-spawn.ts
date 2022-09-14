@@ -5,8 +5,10 @@ import { Item, ItemToModel } from "shared/types/items";
 
 let first_run = true;
 const ItemSpawnRules: { [index in Item]: (world: World) => boolean } = {
-	[Item.StandDisc]: () => {
-		return useThrottle(300);
+	[Item.StandDisc]: (world: World) => {
+		const itemCount = world.query(ItemComponent).snapshot().size();
+		print(itemCount);
+		return useThrottle(1) && (itemCount === undefined ? 0 : itemCount) < 3;
 	},
 
 	[Item.Arrow]: () => {

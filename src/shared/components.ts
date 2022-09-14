@@ -14,6 +14,11 @@ export const ItemComponent = component<{ id: Item }>("ItemComponent");
 export const Renderable = component<{ model: Model }>("Renderable");
 export const Targetable = component("Targetable");
 export const Targeted = component<{}>("Targeted");
+
 export const Blocking = component<{ frame: number }>("Blocking", {
+	frame: 0,
+});
+
+export const Dodging = component<{ frame: number }>("Dodging", {
 	frame: 0,
 });
