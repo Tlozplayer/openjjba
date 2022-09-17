@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Christian Fletcher <mistrustfully@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
 import { GroupMotor, SingleMotor, Spring } from "@rbxts/flipper";
 import { useDeltaTime, useHookState } from "@rbxts/matter";
 

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Ukendio
+//
+// SPDX-License-Identifier: MIT
+
 /// Based on https://github.com/Ukendio/for-animia/blob/master/src/shared/start.ts
 
 import { Debugger, Loop, World, AnySystem } from "@rbxts/matter";

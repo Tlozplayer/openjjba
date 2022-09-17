@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Christian Fletcher <mistrustfully@gmail.com>
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import { useEvent, World } from "@rbxts/matter";
 import { t } from "@rbxts/t";
 import { Moves } from "shared/combat/moves";

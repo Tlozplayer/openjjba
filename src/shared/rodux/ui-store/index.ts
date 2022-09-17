@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Christian Fletcher <mistrustfully@gmail.com>
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import Rodux from "@rbxts/rodux";
 import { PickupReducer, UpdatePickupUIAction } from "./pickup-reducer";
 import { LockOnReducer, SetTargetAction } from "./lock-on-reducer";

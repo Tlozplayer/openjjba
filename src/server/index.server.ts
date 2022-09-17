@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Christian Fletcher <mistrustfully@gmail.com>
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import { start } from "shared/start";
 import { ReplicatedStorage } from "@rbxts/services";
 import { IServerState } from "shared/types/state";

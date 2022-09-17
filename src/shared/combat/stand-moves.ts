@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Christian Fletcher <mistrustfully@gmail.com>
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import { Stand } from "shared/types/stands";
 import { Move, MoveData, Moves, MergeMove } from "./moves";
 

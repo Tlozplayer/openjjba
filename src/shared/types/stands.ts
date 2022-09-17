@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Christian Fletcher <mistrustfully@gmail.com>
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import { ReplicatedStorage } from "@rbxts/services";
 
 export const enum Stand {

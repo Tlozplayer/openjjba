@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Christian Fletcher <mistrustfully@gmail.com>
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import { ReplicatedStorage } from "@rbxts/services";
 import { CreateUIStore } from "shared/rodux/ui-store";
 import { start } from "shared/start";

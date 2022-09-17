@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Christian Fletcher <mistrustfully@gmail.com>
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import { useThrottle, World } from "@rbxts/matter";
 import { Workspace } from "@rbxts/services";
 import { ItemComponent, Renderable } from "shared/components";

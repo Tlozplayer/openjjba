@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Christian Fletcher <mistrustfully@gmail.com>
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import Net from "@rbxts/net";
 import { AnyComponent } from "@rbxts/matter";
 import { ComponentNames } from "shared/types/serde";

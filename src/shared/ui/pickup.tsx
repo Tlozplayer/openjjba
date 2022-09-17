@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Christian Fletcher <mistrustfully@gmail.com>
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import { Spring } from "@rbxts/flipper";
 import Roact, { Element } from "@rbxts/roact";
 import { withHooks } from "@rbxts/roact-hooked";

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Christian Fletcher <mistrustfully@gmail.com>
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import { AnyEntity, useEvent, World } from "@rbxts/matter";
 import { PlayerEntity } from "server/plugins/load-player-data";
 import { ItemComponent, PlayerData } from "shared/components";

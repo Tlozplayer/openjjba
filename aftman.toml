@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 Christian Fletcher <mistrustfully@gmail.com>
+#
+# SPDX-License-Identifier: CC0-1.0
+
 [tools]
 rojo = "rojo-rbx/rojo@7.2.0"
 rbxcloud = "Sleitnick/rbxcloud@0.2.1"

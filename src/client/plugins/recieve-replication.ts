@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Ukendio
+//
+// SPDX-License-Identifier: MIT
+
 /// https://github.com/Ukendio/for-animia/blob/master/src/client/receiveReplication.ts
 
 import { AnyComponent, World } from "@rbxts/matter";

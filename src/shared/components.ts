@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Christian Fletcher <mistrustfully@gmail.com>
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import { component } from "@rbxts/matter";
 import { IPlayerData } from "shared/types/player-data";
 import { Move } from "./combat/moves";
