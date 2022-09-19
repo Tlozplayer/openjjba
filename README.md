@@ -18,7 +18,7 @@ The project itself uses [REUSE](https://reuse.software/) to specify the used lic
 A significant portion of the source code and assets are licensed under `GPL-3.0-or-later`. The exception is code that may be used as an example, for instance [hooks](src/shared/hooks), which are licensed under `MIT`. Project files are generally licensed under `CC0-1.0`. 
 
 ## Contributing
-Contributions are always welcome. In the future, there will be a CONTRIBUTING.md, which will outline the process to contribute code, models, animations, and UI.
+Read [CONTRIBUTING.md](CONTRIBUTING/CONTRIBUTING.md)
 
 ## Thanks to
 - [Ukendio](https://github.com/Ukendio/), for their [for-animia](https://github.com/Ukendio/for-animia/) project, which was helpful resource for writing certain systems.
