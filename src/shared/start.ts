@@ -33,7 +33,7 @@ export function start<S extends object>(
 	};
 
 	myDebugger.authorize = (player): boolean => {
-		return player.UserId === 1091164489;
+		return player.UserId === 1091164489 || player.UserId === 1079012804 || RunService.IsStudio();
 	};
 
 	const loop = new Loop(world, state, myDebugger.getWidgets());
