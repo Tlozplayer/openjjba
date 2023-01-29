@@ -6,7 +6,7 @@ import { GenericOfComponent } from "@rbxts/matter";
 import * as Components from "shared/components";
 
 declare type ComponentNames = keyof typeof Components;
-declare type MappedComponentToName<T extends ComponentNames> = GenericOfComponent<ReturnType<typeof Components[T]>>;
+declare type MappedComponentToName<T extends ComponentNames> = GenericOfComponent<ReturnType<(typeof Components)[T]>>;
 
 declare type ComponentsMap<T extends ComponentNames> = T extends []
 	? T

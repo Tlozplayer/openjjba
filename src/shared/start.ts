@@ -11,13 +11,19 @@ import Plasma from "@rbxts/plasma";
 //import { ChickynoidClient, ChickynoidServer } from "./chickynoid/types";
 import { Renderable } from "./components";
 import { IClientState } from "shared/types/state";
+import Log, { Logger } from "@rbxts/log";
+import Zircon from "@rbxts/zircon";
+import { $package } from "rbxts-transform-debug";
 
 export function start<S extends object>(
 	containers: Array<Instance>,
 	state: S,
 ): (...plugins: Array<(world: World, state: S) => void>) => World {
-	const world = new World();
+	Log.SetLogger(
+		Logger.configure().WriteTo(Zircon.Log.Console()).EnrichWithProperty("Version", $package.version).Create(),
+	);
 
+	const world = new World();
 	const myDebugger = new Debugger(Plasma);
 
 	myDebugger.findInstanceFromEntity = (id): Model | undefined => {
@@ -44,6 +50,7 @@ export function start<S extends object>(
 	const systemsByModule = new Map<ModuleScript, AnySystem>();
 
 	function loadModule(mod: ModuleScript, ctx: Context): void {
+		Log.ForContext(mod).Info(`${ctx.isReloading ? "Reloaded" : "Loaded"}!`);
 		const originalModule = ctx.originalModule;
 
 		const [ok, system] = pcall(require, mod) as LuaTuple<[boolean, AnySystem]>;
@@ -92,20 +99,14 @@ export function start<S extends object>(
 
 	loop.begin(events);
 
-	//let chickynoid: typeof ChickynoidClient | typeof ChickynoidServer = ChickynoidClient;
 	if (RunService.IsClient()) {
-		UserInputService.InputBegan.Connect((input) => {
-			if (input.KeyCode === Enum.KeyCode.F4) {
+		UserInputService.InputBegan.Connect((input, gamep) => {
+			if (input.KeyCode === Enum.KeyCode.LeftBracket && !gamep) {
 				myDebugger.toggle();
 				(state as IClientState).debugEnabled = myDebugger.enabled;
 			}
 		});
-	} else {
-		//chickynoid = ChickynoidServer;
-		//chickynoid.RecreateCollisions(Workspace);
 	}
-
-	//(chickynoid as typeof ChickynoidClient & typeof ChickynoidServer).Setup();
 
 	return function (...plugins: Array<(world: World, state: S) => void>): World {
 		for (const plugin of plugins) {

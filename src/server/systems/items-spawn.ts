@@ -2,17 +2,24 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-import { useThrottle, World } from "@rbxts/matter";
+import { World } from "@rbxts/matter";
 import { Workspace } from "@rbxts/services";
 import { ItemComponent, Renderable } from "shared/components";
+import { useTimer } from "shared/hooks/useTimer";
 import { Item, ItemToModel } from "shared/types/items";
 
-let first_run = true;
 const ItemSpawnRules: { [index in Item]: (world: World) => boolean } = {
 	[Item.StandDisc]: (world: World) => {
-		const itemCount = world.query(ItemComponent).snapshot().size();
-		print(itemCount);
-		return useThrottle(5) && (itemCount === undefined ? 0 : itemCount) < 3;
+		let itemCount = 0;
+		for (const [_] of world.query(ItemComponent)) {
+			itemCount++;
+		}
+
+		if (itemCount < 3) {
+			return useTimer(5) && (itemCount === undefined ? 0 : itemCount) < 3;
+		}
+
+		return false;
 	},
 
 	[Item.Arrow]: () => {
@@ -26,7 +33,7 @@ const ItemSpawnRules: { [index in Item]: (world: World) => boolean } = {
 
 function ItemsSpawn(world: World) {
 	for (const [item, canSpawn] of pairs(ItemSpawnRules)) {
-		if (canSpawn(world) && first_run === false) {
+		if (canSpawn(world)) {
 			const ItemModel = ItemToModel[item].Clone();
 			world.spawn(ItemComponent({ id: item }), Renderable({ model: ItemModel }));
 
@@ -34,8 +41,6 @@ function ItemsSpawn(world: World) {
 			ItemModel.Parent = Workspace;
 		}
 	}
-
-	first_run = false;
 }
 
 export = ItemsSpawn;

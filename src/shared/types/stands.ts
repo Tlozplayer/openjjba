@@ -7,6 +7,7 @@ import { ReplicatedStorage } from "@rbxts/services";
 export const enum Stand {
 	Standless,
 	ZaShadow,
+	Instinct,
 }
 
 export const enum Spec {
@@ -35,4 +36,11 @@ export type StandModel = Model & {
 
 export const StandToModel: { [index in Exclude<Stand, Stand.Standless>]: StandModel } = {
 	[Stand.ZaShadow]: ReplicatedStorage.assets.stands.ZaShadow,
+	[Stand.Instinct]: ReplicatedStorage.assets.stands.ZaShadow,
+};
+
+export const StandToName: { [index in Stand]: string } = {
+	[Stand.Standless]: "Standless",
+	[Stand.ZaShadow]: "Za Shadow",
+	[Stand.Instinct]: "Instinct",
 };
