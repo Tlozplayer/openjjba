@@ -17,6 +17,9 @@ import { CreateUI } from "./plugins/create-ui";
 import { RecieveDatastoreChanges } from "./plugins/recieve-datastore-changes";
 import { ReceiveReplication } from "./plugins/recieve-replication";
 
+Log.SetLogger(
+	Logger.configure().WriteTo(Zircon.Log.Console()).EnrichWithProperty("Version", $package.version).Create(),
+);
 ZirconClient.Init({ EnableTags: true, Keys: [Enum.KeyCode.RightBracket], AutoFocusTextBox: true });
 
 declare const script: { systems: Folder };

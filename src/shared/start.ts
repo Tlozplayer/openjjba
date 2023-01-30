@@ -19,10 +19,6 @@ export function start<S extends object>(
 	containers: Array<Instance>,
 	state: S,
 ): (...plugins: Array<(world: World, state: S) => void>) => World {
-	Log.SetLogger(
-		Logger.configure().WriteTo(Zircon.Log.Console()).EnrichWithProperty("Version", $package.version).Create(),
-	);
-
 	const world = new World();
 	const myDebugger = new Debugger(Plasma);
 

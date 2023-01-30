@@ -14,20 +14,20 @@ import {
 	ZirconEnumBuilder,
 } from "@rbxts/zircon";
 import { ItemComponent, Renderable } from "shared/components";
-import { Item, ItemToModel, ItemToName } from "shared/types/items";
-import { Stand, StandToName } from "shared/types/stands";
+import { Item, ItemToModel } from "shared/types/items";
+import { Stand } from "shared/types/stands";
 import { IServerState } from "shared/types/state";
 
-export const ItemNames: string[] = [];
-for (const [id, name] of pairs(ItemToName)) {
-	ItemNames[id] = name.gsub(" ", "")[0];
+export const ItemNames: Item[] = [];
+for (const [_, name] of pairs(Item)) {
+	ItemNames.push(name);
 }
 
 export const ZrItems = new ZirconEnumBuilder("Items").FromArray(ItemNames);
 
-export const StandNames: string[] = [];
-for (const [id, name] of pairs(StandToName)) {
-	StandNames[id] = name.gsub(" ", "")[0];
+export const StandNames: Stand[] = [];
+for (const [_, name] of pairs(Stand)) {
+	StandNames.push(name);
 }
 
 export const ZrStands = new ZirconEnumBuilder("Stands").FromArray(StandNames);
@@ -52,12 +52,10 @@ export function InitZircon(world: World, state: IServerState) {
 				new ZirconNamespaceBuilder("items")
 					.AddFunction(
 						new ZirconFunctionBuilder("spawn").AddArgument(ZrItems).Bind((_, item) => {
-							const ItemModel = ItemToModel[item.getValue() as Item].Clone();
+							const Item = ItemNames[item.getValue()];
+							const ItemModel = ItemToModel[Item].Clone();
 
-							world.spawn(
-								ItemComponent({ id: item.getValue() as Item }),
-								Renderable({ model: ItemModel }),
-							);
+							world.spawn(ItemComponent({ id: Item }), Renderable({ model: ItemModel }));
 
 							ItemModel.MoveTo(Vector3.zero);
 							ItemModel.Parent = Workspace;
@@ -75,10 +73,9 @@ export function InitZircon(world: World, state: IServerState) {
 							.AddArgument("player")
 							.AddArgument(ZrStands)
 							.Bind((_, plr, stand) => {
-								print(StandToName[stand.getValue() as Stand]);
 								state.PlayerData.get(plr)!.dispatch({
 									type: "SetStandAction",
-									stand: { id: stand.getValue() },
+									stand: { id: StandNames[stand.getValue()] },
 								});
 							}),
 					)

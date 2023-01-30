@@ -6,6 +6,7 @@ import Rodux from "@rbxts/rodux";
 import { PickupReducer, UpdatePickupUIAction } from "./pickup-reducer";
 import { LockOnReducer, SetTargetAction } from "./lock-on-reducer";
 import { MusicReducer, SetPlayingMusic } from "./music-reducer";
+import { LogMiddleware } from "../middleware/log-middleware";
 
 export interface IUIStore {
 	Pickup: {
@@ -33,7 +34,7 @@ const reducer = Rodux.combineReducers<IUIStore, StoreActions>({
 });
 
 export function CreateUIStore() {
-	return new Rodux.Store<IUIStore, StoreActions, {}>(reducer, undefined /*[Rodux.loggerMiddleware]*/);
+	return new Rodux.Store<IUIStore, StoreActions, {}>(reducer, undefined /*,[LogMiddleware()]*/);
 }
 
 export type UIStore = Rodux.Store<IUIStore, StoreActions>;

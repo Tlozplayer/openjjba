@@ -6,7 +6,8 @@
 	"scripts": {
 		"build": "npx roblox-ts build",
 		"watch": "npx roblox-ts -w",
-		"eslint": "eslint src --max-warnings 0"
+		"eslint": "eslint src --max-warnings 0",
+		"clean": "rm -rf out && rm -rf include && rm -rf node_modules && npm i && npm run build"
 	},
 	"keywords": [],
 	"author": {

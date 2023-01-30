@@ -23,7 +23,7 @@ function HandleItemPickups(world: World, state: IServerState) {
 
 			playerData.dispatch({
 				type: "AddItemAction",
-				item: { item: item.id },
+				item: { id: item.id },
 			});
 
 			world.despawn(entityId);

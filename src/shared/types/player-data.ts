@@ -32,7 +32,7 @@ export const DefaultPlayerData: IPlayerData = {
 
 	inventory: [
 		{
-			item: Item.StandDisc,
+			id: Item.StandDisc,
 			extra_data: {
 				stored_stand: {
 					id: Stand.Standless,

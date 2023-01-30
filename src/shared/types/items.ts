@@ -5,14 +5,15 @@
 import { ReplicatedStorage } from "@rbxts/services";
 import { IStand } from "./stands";
 
-export const enum Item {
-	ArrowFragment,
-	Arrow,
-	StandDisc,
-}
+export type Item = keyof typeof Item;
+export const Item = {
+	ArrowFragment: "ArrowFragment",
+	Arrow: "Arrow",
+	StandDisc: "StandDisc",
+} as const;
 
 export interface IItem {
-	item: Item;
+	id: Item;
 	extra_data?: Partial<IExtraItemData>;
 }
 
@@ -29,10 +30,4 @@ export const ItemToModel: { [index in Item]: ItemModel } = {
 	[Item.ArrowFragment]: ReplicatedStorage.assets.items.Roka,
 	[Item.Arrow]: ReplicatedStorage.assets.items.PocketWatch,
 	[Item.StandDisc]: ReplicatedStorage.assets.items.Disc,
-};
-
-export const ItemToName: { [index in Item]: string } = {
-	[Item.ArrowFragment]: "Arrow Fragment",
-	[Item.StandDisc]: "Disk",
-	[Item.Arrow]: "Stand Arrow",
 };
