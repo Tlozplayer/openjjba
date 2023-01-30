@@ -4,7 +4,7 @@
 
 import { useDeltaTime, useThrottle, World } from "@rbxts/matter";
 import { Cooldown } from "shared/components";
-import { useTimer } from "shared/hooks/useTimer";
+import { useTimer } from "shared/hooks/use-timer";
 
 function HandleCooldowns(world: World) {
 	for (const [id, cooldown] of world.query(Cooldown)) {

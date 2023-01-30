@@ -5,7 +5,7 @@
 import { World } from "@rbxts/matter";
 import { Workspace } from "@rbxts/services";
 import { ItemComponent, Renderable } from "shared/components";
-import { useTimer } from "shared/hooks/useTimer";
+import { useTimer } from "shared/hooks/use-timer";
 import { Item, ItemToModel } from "shared/types/items";
 
 const ItemSpawnRules: { [index in Item]: (world: World) => boolean } = {

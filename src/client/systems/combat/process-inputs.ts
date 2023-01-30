@@ -4,7 +4,7 @@
 
 import { World } from "@rbxts/matter";
 import { LocalPlayer, Moveset } from "shared/components";
-import { useGamejoyBind } from "shared/hooks/useGamejoy";
+import { useGamejoyBind } from "shared/hooks/use-gamejoy";
 import { IClientState } from "shared/types/state";
 
 function ProcessInputs(world: World, state: IClientState) {

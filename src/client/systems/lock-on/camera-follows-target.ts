@@ -6,7 +6,7 @@ import { Spring } from "@rbxts/flipper";
 import { World } from "@rbxts/matter";
 import { Players, Workspace } from "@rbxts/services";
 import { Renderable, Targeted } from "shared/components";
-import { useGroupMotor, useMotor } from "shared/hooks/useMotor";
+import { useGroupMotor, useMotor } from "shared/hooks/use-motor";
 
 function CameraFollowsTarget(world: World) {
 	const camera = Workspace.CurrentCamera;

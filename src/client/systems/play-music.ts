@@ -6,7 +6,7 @@ import { Spring } from "@rbxts/flipper";
 import { useEvent, World } from "@rbxts/matter";
 import { SoundService } from "@rbxts/services";
 import { CombatTag } from "shared/components";
-import { useMotor } from "shared/hooks/useMotor";
+import { useMotor } from "shared/hooks/use-motor";
 import { Music, Song } from "shared/music";
 import { IClientState } from "shared/types/state";
 

@@ -4,7 +4,7 @@
 
 import { World } from "@rbxts/matter";
 import { Hovered, ItemComponent } from "shared/components";
-import { useGamejoyBind } from "shared/hooks/useGamejoy";
+import { useGamejoyBind } from "shared/hooks/use-gamejoy";
 import Remotes from "shared/remotes";
 import { IClientState } from "shared/types/state";
 

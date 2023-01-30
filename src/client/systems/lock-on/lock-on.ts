@@ -5,7 +5,7 @@
 import { AnyEntity, useEvent, useThrottle, World } from "@rbxts/matter";
 import { Players, UserInputService, Workspace } from "@rbxts/services";
 import { Renderable, Targetable, Targeted } from "shared/components";
-import { useGamejoyBind } from "shared/hooks/useGamejoy";
+import { useGamejoyBind } from "shared/hooks/use-gamejoy";
 import { SetTarget } from "shared/rodux/ui-store/lock-on-reducer";
 import { IClientState } from "shared/types/state";
 

@@ -13,6 +13,8 @@ function cleanup(storage: storage) {
 	return os.clock() < storage.expiry;
 }
 
+/// Waits for `seconds` to elapse, then returns true.
+/// Essentially useThrottle but doesn't start out as true.
 export function useTimer(seconds: number, discriminator?: unknown) {
 	const storage = useHookState(discriminator, cleanup);
 	if (storage.time === undefined) {

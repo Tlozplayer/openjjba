@@ -6,7 +6,7 @@ import { AnyEntity, World } from "@rbxts/matter";
 import { RunService } from "@rbxts/services";
 import { t } from "@rbxts/t";
 import { LocalPlayer, Stand } from "shared/components";
-import { useChanged } from "shared/hooks/useChanged";
+import { useChanged } from "shared/hooks/use-changed";
 import { StandComponents } from "shared/moves";
 import { DataRoduxStore } from "shared/rodux/data-store";
 import { IClientState, IServerState } from "shared/types/state";
