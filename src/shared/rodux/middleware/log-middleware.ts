@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 Christian Fletcher <mistrustfully@gmail.com>
+//
+// SPDX-License-Identifier: GPl-3.0-or-later
+
 import Rodux, { AnyAction } from "@rbxts/rodux";
 import Log from "@rbxts/log";
 import { HashMap } from "@rbxts/rust-classes";
