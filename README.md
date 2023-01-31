@@ -22,7 +22,7 @@ A significant portion of the source code and assets are licensed under `GPL-3.0-
 
 ## Contributing
 
-Contributions are always welcome. In the future, there will be a CONTRIBUTING.md, which will outline the process to contribute code, models, animations, and UI.
+See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Thanks to
 
