@@ -4,7 +4,9 @@
 
 import { AnyComponent, AnyEntity, Component, component } from "@rbxts/matter";
 import { IMove } from "./moves";
+import { FrameData } from "./types/frame-data";
 import { Item } from "./types/items";
+import { Option } from "@rbxts/rust-classes";
 
 export const LocalPlayer = component("LocalPlayerComponent");
 export const PlayerLike = component("PlayerLike");
@@ -26,23 +28,27 @@ export const Dodging = component<{ frame: number }>("Dodging", {
 
 export const Hovered = component("Hovered");
 
-type SpacialHitbox =
-	| {
-			type: "Radius";
-			position: Vector3;
-			size: number;
-	  }
-	| {
-			type: "Hitbox";
-			position: CFrame;
-			size: Vector3;
+export type SpacialHitbox =
+	| (
+			| {
+					type: "Radius";
+					position: Vector3;
+					size: number;
+			  }
+			| {
+					type: "Hitbox";
+					position: CFrame;
+					size: Vector3;
+			  }
+	  ) & {
+			position_type: "Relative" | "Global";
 	  };
 
-export const Hitbox = component<
-	SpacialHitbox & {
-		currentHit: AnyEntity[];
-	}
->("Hitbox");
+export const Hitbox = component<{
+	currentHit: AnyEntity[];
+	filter: (AnyEntity | Instance)[];
+	frame_data: FrameData<SpacialHitbox>;
+}>("Hitbox");
 
 export const CombatTag = component<{
 	taggedBy: AnyEntity;
@@ -56,3 +62,4 @@ export const Cooldown = component<{ on_cooldown: boolean; cooldown: number }>("C
 	cooldown: 0,
 });
 export const Stand = component("stand");
+export const Owner = component<{ owner: AnyEntity }>("Owner");

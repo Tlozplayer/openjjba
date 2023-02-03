@@ -4,7 +4,7 @@
 
 import { component, World } from "@rbxts/matter";
 import { Workspace } from "@rbxts/services";
-import { Renderable } from "shared/components";
+import { Owner, Renderable } from "shared/components";
 
 type TeleportProps = {
 	distance: number;
@@ -15,14 +15,15 @@ export const Teleport = component<TeleportProps>("Teleport", {
 });
 
 function TeleportSystem(world: World) {
-	for (const [id, props, character] of world.query(Teleport, Renderable)) {
+	for (const [id, props, owner] of world.query(Teleport, Owner)) {
+		const character = world.get(owner.owner, Renderable);
+		if (!character) return;
+
 		const humanoid = character.model.FindFirstChildOfClass("Humanoid");
 		const humanoidRootPart = humanoid?.RootPart;
 		const camera = Workspace.CurrentCamera;
 
-		if (!humanoid || !humanoidRootPart || !camera) {
-			continue;
-		}
+		if (!humanoid || !humanoidRootPart || !camera) continue;
 
 		const cameraLookDirection = camera.CFrame.LookVector.mul(new Vector3(1, 0, 1)).Unit;
 		const cameraRelativeCFrame = CFrame.lookAt(Vector3.zero, cameraLookDirection);

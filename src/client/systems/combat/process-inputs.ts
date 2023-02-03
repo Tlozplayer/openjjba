@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 import { World } from "@rbxts/matter";
-import { LocalPlayer, Moveset } from "shared/components";
+import { LocalPlayer, Moveset, Owner } from "shared/components";
 import { useGamejoyBind } from "shared/hooks/use-gamejoy";
 import { IClientState } from "shared/types/state";
 
@@ -13,7 +13,7 @@ function ProcessInputs(world: World, state: IClientState) {
 
 	moveset.forEach((move) => {
 		for (const [_] of useGamejoyBind(state.GamejoyContext, state.InputActions[move.keybind])) {
-			world.insert(localentity, ...move.effects.map((effect) => table.clone(effect)));
+			world.spawn(Owner({ owner: localentity }), ...move.effects.map((effect) => table.clone(effect)));
 		}
 	});
 }
