@@ -46,7 +46,7 @@ export type SpacialHitbox =
 
 export const Hitbox = component<{
 	currentHit: AnyEntity[];
-	filter: (AnyEntity | Instance)[];
+	filter?: (AnyEntity | Instance)[];
 	frame_data: FrameData<SpacialHitbox>;
 }>("Hitbox");
 

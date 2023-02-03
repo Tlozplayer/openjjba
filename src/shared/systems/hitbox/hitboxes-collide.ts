@@ -4,7 +4,6 @@
 
 import { AnyEntity, Entity, World } from "@rbxts/matter";
 import { RunService, Workspace } from "@rbxts/services";
-import { StatefulZirconValidator } from "@rbxts/zircon/out/Class/StatefulZirconValidator";
 import { Hitbox, Owner, Renderable, SpacialHitbox } from "shared/components";
 import { useFrameData } from "shared/hooks/use-frame-data";
 import { FrameData } from "shared/types/frame-data";
@@ -14,7 +13,7 @@ export function GetHitboxPosition(world: World, hitbox_id: AnyEntity, frame: Spa
 
 	if (frame.position_type === "Relative") {
 		const owner = world.get(hitbox_id, Owner);
-		if (!owner) {
+		if (owner === undefined) {
 			warn('Frame position type "Relative", but has no owner!');
 			return;
 		}
@@ -33,15 +32,42 @@ export function GetHitboxPosition(world: World, hitbox_id: AnyEntity, frame: Spa
 	}
 }
 
+function GetFilteredInstances(world: World, id: AnyEntity, extra_filtered?: (Instance | AnyEntity)[]) {
+	const instances: Instance[] = [];
+	if (extra_filtered) {
+		extra_filtered.forEach((entity) => {
+			if (typeIs(entity, "Instance")) {
+				instances.push(entity);
+			} else if (typeIs(entity, "number")) {
+				const model = world.get(entity, Renderable);
+				if (model) {
+					instances.push(model.model);
+				}
+			}
+		});
+	}
+
+	const owner = world.get(id, Owner);
+	if (owner !== undefined) {
+		const model = world.get(owner.owner, Renderable);
+		if (model !== undefined) {
+			instances.push(model.model);
+		}
+	}
+
+	return instances;
+}
+
 function HitboxesCollide(world: World) {
 	for (const [id, hitbox] of world.query(Hitbox)) {
 		const frame_option = useFrameData(hitbox.frame_data, id);
-		if (frame_option) {
+		if (frame_option !== undefined) {
 			const frame = frame_option;
 			const position = GetHitboxPosition(world, id, frame)!;
 
 			const overlapParams = new OverlapParams();
 			overlapParams.FilterType = Enum.RaycastFilterType.Blacklist;
+			overlapParams.FilterDescendantsInstances = GetFilteredInstances(world, id, hitbox.filter);
 
 			const result =
 				frame.type === "Radius"
