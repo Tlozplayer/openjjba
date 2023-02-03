@@ -63,3 +63,4 @@ export const Cooldown = component<{ on_cooldown: boolean; cooldown: number }>("C
 });
 export const Stand = component("stand");
 export const Owner = component<{ owner: AnyEntity }>("Owner");
+export const Transform = component<{ cframe: CFrame; _doNotReconcile: boolean }>("Transform");

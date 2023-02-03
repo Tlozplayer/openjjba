@@ -5,7 +5,7 @@
 import { World } from "@rbxts/matter";
 import { BuildRagdollConstraints, SetRagdollEnabled } from "@rbxts/r15-ragdoll";
 import { Players, ReplicatedStorage, Workspace } from "@rbxts/services";
-import { PlayerLike, Renderable } from "shared/components";
+import { PlayerLike, Renderable, Transform } from "shared/components";
 
 function GetR6PartFromR15(r15part: Enum.BodyPartR15): Enum.BodyPart | undefined {
 	switch (r15part) {
@@ -70,7 +70,11 @@ export function LoadCharaterRig(world: World) {
 		});
 
 		player.CharacterAdded.Connect((character) => {
-			world.spawn(Renderable({ model: character }), PlayerLike());
+			world.spawn(
+				Renderable({ model: character }),
+				PlayerLike(),
+				Transform({ cframe: character.PrimaryPart?.CFrame || new CFrame(0, 0, 0), _doNotReconcile: true }),
+			);
 		});
 	});
 }

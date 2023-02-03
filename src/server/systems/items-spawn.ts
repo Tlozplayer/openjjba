@@ -4,7 +4,7 @@
 
 import { World } from "@rbxts/matter";
 import { Workspace } from "@rbxts/services";
-import { ItemComponent, Renderable } from "shared/components";
+import { ItemComponent, Renderable, Transform } from "shared/components";
 import { useTimer } from "shared/hooks/use-timer";
 import { Item, ItemToModel } from "shared/types/items";
 
@@ -35,10 +35,11 @@ function ItemsSpawn(world: World) {
 	for (const [item, canSpawn] of pairs(ItemSpawnRules)) {
 		if (canSpawn(world)) {
 			const ItemModel = ItemToModel[item].Clone();
-			world.spawn(ItemComponent({ id: item }), Renderable({ model: ItemModel }));
-
-			ItemModel.MoveTo(new Vector3(0, 0, 0));
-			ItemModel.Parent = Workspace;
+			world.spawn(
+				ItemComponent({ id: item }),
+				Renderable({ model: ItemModel }),
+				Transform({ cframe: new CFrame(0, 0, 0), _doNotReconcile: false }),
+			);
 		}
 	}
 }
