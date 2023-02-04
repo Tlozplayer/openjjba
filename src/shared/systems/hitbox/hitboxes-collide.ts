@@ -29,6 +29,8 @@ export function GetHitboxPosition(world: World, hitbox_id: AnyEntity, frame: Spa
 		} else {
 			return model.model.PrimaryPart!.CFrame.mul(position as CFrame);
 		}
+	} else {
+		return position;
 	}
 }
 
@@ -61,9 +63,9 @@ function GetFilteredInstances(world: World, id: AnyEntity, extra_filtered?: (Ins
 function HitboxesCollide(world: World) {
 	for (const [id, hitbox] of world.query(Hitbox)) {
 		const frame_option = useFrameData(hitbox.frame_data, id);
-		if (frame_option !== undefined) {
-			const frame = frame_option;
-			const position = GetHitboxPosition(world, id, frame)!;
+		if (frame_option.isSome()) {
+			const frame = frame_option.unwrap();
+			const position = GetHitboxPosition(world, id, frame);
 
 			const overlapParams = new OverlapParams();
 			overlapParams.FilterType = Enum.RaycastFilterType.Blacklist;

@@ -16,7 +16,7 @@ const ItemSpawnRules: { [index in Item]: (world: World) => boolean } = {
 		}
 
 		if (itemCount < 3) {
-			return useTimer(5) && (itemCount === undefined ? 0 : itemCount) < 3;
+			return useTimer(5) && itemCount < 3;
 		}
 
 		return false;
@@ -38,8 +38,9 @@ function ItemsSpawn(world: World) {
 			world.spawn(
 				ItemComponent({ id: item }),
 				Renderable({ model: ItemModel }),
-				Transform({ cframe: new CFrame(0, 0, 0), _doNotReconcile: false }),
+				Transform({ cframe: new CFrame(0, 10, 0), _doNotReconcile: false }),
 			);
+			ItemModel.Parent = Workspace;
 		}
 	}
 }

@@ -2,19 +2,26 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-import { AnyComponent, AnyEntity, Component, component } from "@rbxts/matter";
+import { AnyEntity, component } from "@rbxts/matter";
 import { IMove } from "./moves";
 import { FrameData } from "./types/frame-data";
 import { Item } from "./types/items";
-import { Option } from "@rbxts/rust-classes";
+
+export const Renderable = component<{ model: Model }>("Renderable");
+export const Transform = component<{ cframe: CFrame; _doNotReconcile: boolean }>("Transform");
+export const Owner = component<{ owner: AnyEntity }>("Owner");
 
 export const LocalPlayer = component("LocalPlayerComponent");
 export const PlayerLike = component("PlayerLike");
 export const Health = component<{ health: number }>();
+export const Humanoid = component<{ humanoid: Humanoid }>("Humanoid");
+
+export const Damage = component<{ amount: number }>();
+export const DamageQueue = component<{ queue: number[] }>("DamageQueue", { queue: [] });
+export const UsingMove = component<{ move: AnyEntity }>("UsingMove");
 
 export const StandRig = component<{ model: Model }>("StandRig");
 export const ItemComponent = component<{ id: Item }>("ItemComponent");
-export const Renderable = component<{ model: Model }>("Renderable");
 export const Targetable = component("Targetable");
 export const Targeted = component<{}>("Targeted");
 
@@ -55,12 +62,9 @@ export const CombatTag = component<{
 	damageMap: Map<AnyEntity, number>;
 }>("CombatTag");
 
-export const DamageRequest = component<{ damage: number; owner: AnyEntity; target: AnyEntity }>("DamageRequest");
 export const Moveset = component<IMove[]>("Moveset");
 export const Cooldown = component<{ on_cooldown: boolean; cooldown: number }>("Cooldown", {
 	on_cooldown: false,
 	cooldown: 0,
 });
 export const Stand = component("stand");
-export const Owner = component<{ owner: AnyEntity }>("Owner");
-export const Transform = component<{ cframe: CFrame; _doNotReconcile: boolean }>("Transform");

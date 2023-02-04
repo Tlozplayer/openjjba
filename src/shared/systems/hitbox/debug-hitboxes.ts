@@ -35,8 +35,8 @@ const HitboxWidget = Plasma.widget((world: World, id: AnyEntity, frame: SpacialH
 function DebugHitboxes(world: World, state: IClientState) {
 	for (const [id, hitbox] of world.query(Hitbox)) {
 		const frame = useFrameData(hitbox.frame_data, id);
-		if (!state.debugEnabled || !frame) continue;
-		HitboxWidget(world, id, frame);
+		if (!state.debugEnabled || frame.isNone()) continue;
+		HitboxWidget(world, id, frame.unwrap());
 	}
 }
 
