@@ -72,9 +72,9 @@ export function LoadCharaterRig(world: World) {
 		player.CharacterAdded.Connect((character) => {
 			world.spawn(
 				Renderable({ model: character }),
+				Humanoid({ humanoid: character.FindFirstChildOfClass("Humanoid")! }),
 				PlayerLike(),
 				Transform({ cframe: character.PrimaryPart?.CFrame || new CFrame(0, 0, 0), _doNotReconcile: true }),
-				Humanoid({ humanoid: character.FindFirstChildOfClass("Humanoid")! });
 			);
 		});
 	});

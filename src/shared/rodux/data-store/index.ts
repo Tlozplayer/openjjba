@@ -10,17 +10,14 @@ import { LogMiddleware } from "../middleware/log-middleware";
 import { NetActionMiddleware } from "../middleware/net-action-middleware";
 import { BanDataReducer } from "./reducers/ban-data-reducer";
 import { InventoryActions, InventoryReducer } from "./reducers/inventory-reducer";
-import { SpecReducer } from "./reducers/spec-reducer";
 import { StandReducer, StandActions } from "./reducers/stand-reducer";
 import { JoinDateReducer, PlaytimeReducer, TimeActions } from "./reducers/time-reducer";
-import Log from "@rbxts/log";
 
 export type DataStoreActions = InventoryActions | StandActions | TimeActions;
 
 const reducer = Rodux.combineReducers<IPlayerData, DataStoreActions>({
 	inventory: InventoryReducer,
 	stand: StandReducer,
-	spec: SpecReducer,
 	playtime: PlaytimeReducer,
 	join_date: JoinDateReducer,
 	ban_data: BanDataReducer,

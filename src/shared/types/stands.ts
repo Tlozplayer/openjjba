@@ -38,10 +38,3 @@ export const StandToName: { [index in Stand]: string } = {
 	[Stand.ZaShadow]: "Za Shadow",
 	[Stand.Instinct]: "Instinct",
 };
-
-export const enum Spec {
-	Specless,
-	Vampire,
-	Hamon,
-	Spin,
-}

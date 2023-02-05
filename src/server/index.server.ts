@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 import { start } from "shared/start";
-import { ReplicatedStorage } from "@rbxts/services";
+import { Players, ReplicatedStorage, Workspace } from "@rbxts/services";
 import { IServerState } from "shared/types/state";
 import { LoadPlayerData } from "./plugins/load-player-data";
 import { UseTags } from "./plugins/use-tags";

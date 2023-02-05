@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 import { IItem, Item } from "./items";
-import { IStand, Spec, Stand } from "./stands";
+import { IStand, Stand } from "./stands";
 
 interface IBanData {
 	reason: string;
@@ -14,7 +14,6 @@ interface IBanData {
 
 export interface IPlayerData {
 	stand: IStand;
-	spec: Spec;
 
 	inventory: IItem[];
 
@@ -28,15 +27,12 @@ export const DefaultPlayerData: IPlayerData = {
 	stand: {
 		id: Stand.ZaShadow,
 	},
-	spec: Spec.Specless,
 
 	inventory: [
 		{
 			id: Item.StandDisc,
-			extra_data: {
-				stored_stand: {
-					id: Stand.Standless,
-				},
+			stored_stand: {
+				id: Stand.Standless,
 			},
 		},
 	],

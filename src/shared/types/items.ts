@@ -8,19 +8,18 @@ import { IStand } from "./stands";
 export type Item = keyof typeof Item;
 export const Item = {
 	ArrowFragment: "ArrowFragment",
-	Arrow: "Arrow",
+	PocketWatch: "PocketWatch",
 	StandDisc: "StandDisc",
+	Camera: "Camera",
+	Photo: "Photo",
 } as const;
 
-export interface IItem {
-	id: Item;
-	extra_data?: Partial<IExtraItemData>;
-}
-
-export interface IExtraItemData {
-	/// StandDisc
-	stored_stand: IStand;
-}
+export type IItem =
+	| { id: typeof Item.StandDisc; stored_stand: IStand }
+	| { id: typeof Item.Photo; serialized_photo: string }
+	| {
+			id: Item;
+	  };
 
 export type ItemModel = Model & {
 	Handle: BasePart;
@@ -28,6 +27,16 @@ export type ItemModel = Model & {
 
 export const ItemToModel: { [index in Item]: ItemModel } = {
 	[Item.ArrowFragment]: ReplicatedStorage.assets.items.Roka,
-	[Item.Arrow]: ReplicatedStorage.assets.items.PocketWatch,
+	[Item.PocketWatch]: ReplicatedStorage.assets.items.PocketWatch,
 	[Item.StandDisc]: ReplicatedStorage.assets.items.Disc,
+	[Item.Camera]: ReplicatedStorage.assets.items.Disc,
+	[Item.Photo]: ReplicatedStorage.assets.items.Disc,
+};
+
+export const ItemToName: { [index in Item]: string } = {
+	[Item.StandDisc]: "Disc",
+	[Item.PocketWatch]: "Pocket Watch",
+	[Item.ArrowFragment]: "Arrow\n Fragment",
+	[Item.Camera]: "Camera",
+	[Item.Photo]: "Photo",
 };

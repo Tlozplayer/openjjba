@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 import { AnyComponent, Component } from "@rbxts/matter";
-import { Cooldown, Damage, Dodging, Hitbox, Moveset, SpacialHitbox } from "./components";
+import { Cooldown, Damage, Dodging, Hitbox, Lifetime, Moveset, SpacialHitbox } from "./components";
 import { DefaultKeybinds } from "./default-keybinds";
 import { Teleport } from "./systems/moves/teleport";
 import { Stand } from "./types/stands";
@@ -29,6 +29,7 @@ export const StandComponents: { [index in Stand]: Component<{}>[] } = {
 				name: "TestMove",
 				keybind: "Summon",
 				effects: [
+					Lifetime({ expiry: 10 }),
 					Damage({ amount: 5 }),
 					Hitbox({
 						currentHit: [],

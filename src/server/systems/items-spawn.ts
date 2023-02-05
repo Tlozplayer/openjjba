@@ -8,7 +8,7 @@ import { ItemComponent, Renderable, Transform } from "shared/components";
 import { useTimer } from "shared/hooks/use-timer";
 import { Item, ItemToModel } from "shared/types/items";
 
-const ItemSpawnRules: { [index in Item]: (world: World) => boolean } = {
+const ItemSpawnRules: Partial<{ [index in Item]: (world: World) => boolean }> = {
 	[Item.StandDisc]: (world: World) => {
 		let itemCount = 0;
 		for (const [_] of world.query(ItemComponent)) {
@@ -19,14 +19,6 @@ const ItemSpawnRules: { [index in Item]: (world: World) => boolean } = {
 			return useTimer(5) && itemCount < 3;
 		}
 
-		return false;
-	},
-
-	[Item.Arrow]: () => {
-		return false;
-	},
-
-	[Item.ArrowFragment]: () => {
 		return false;
 	},
 };

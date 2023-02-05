@@ -10,6 +10,7 @@ import { Item } from "./types/items";
 export const Renderable = component<{ model: Model }>("Renderable");
 export const Transform = component<{ cframe: CFrame; _doNotReconcile: boolean }>("Transform");
 export const Owner = component<{ owner: AnyEntity }>("Owner");
+export const Lifetime = component<{ expiry: number }>("Lifetime");
 
 export const LocalPlayer = component("LocalPlayerComponent");
 export const PlayerLike = component("PlayerLike");
