@@ -8,7 +8,7 @@ Source:
 # Copyright: $YEAR $NAME <$CONTACT>
 # License: ...
 
-Files: .vscode/* .eslintrc .prettierrc default.project.json package-lock.json package.json tsconfig.json
+Files: .vscode/* .husky/* .eslintrc .prettierrc default.project.json package-lock.json package.json tsconfig.json
 Copyright: 2022 Christian Fletcher <mistrustfully@gmail.com>
 License: CC0-1.0
 
