@@ -16,6 +16,7 @@ function ProcessInputs(world: World, state: IClientState) {
 		for (const [_] of useGamejoyBind(state.GamejoyContext, state.InputActions[move.keybind])) {
 			if (world.get(localentity, UsingMove) !== undefined) continue;
 			const entity = UseMove(world, localentity, move);
+
 			if (entity !== undefined) {
 				world.insert(localentity, UsingMove({ move: entity }));
 			}

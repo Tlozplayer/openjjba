@@ -11,18 +11,28 @@ import TeleportMove from "./teleport";
 import { Component } from "@rbxts/matter";
 import { Frame, FrameDataBuilder } from "shared/types/frame-data";
 import { Effect } from "shared/effect";
+import { Identity } from "@rbxts/variant/out/types";
+
+function move<T>(defaults: T & BaseMove): (overrides?: Partial<T & BaseMove>) => Identity<T & BaseMove> {
+	return (overrides?: Partial<T & BaseMove>) => {
+		return {
+			...defaults,
+			...(overrides || {}),
+		} as Identity<T & BaseMove>;
+	};
+}
 
 export type BaseMove = { name: string; description: string; keybind: keyof typeof DefaultKeybinds; cooldown: number };
 export type Move<T extends TypeNames<typeof Move> = undefined> = VariantOf<typeof Move, T>;
 export const Move = variantModule({
-	Teleport: fields<BaseMove & { distance: number }>({
+	Teleport: move({
 		name: "Teleport",
 		description: "A small time distortion, moving you forward in space.",
 		keybind: "Dash",
 		cooldown: 0,
 		distance: 5,
 	}),
-	Jab: fields<BaseMove & { damage: number }>({
+	Jab: move({
 		name: "Jab",
 		description: "",
 		keybind: "Jab",
@@ -34,8 +44,8 @@ export const Move = variantModule({
 export const UseMove = (world: World, owner: AnyEntity, move: Move) =>
 	match(move, {
 		Teleport: (move) => TeleportMove(world, owner, move),
-		Jab: ({ damage }) => {
-			return world.spawn(
+		Jab: ({ damage }) =>
+			world.spawn(
 				Owner({ owner }),
 				Lifetime({ expiry: Frame(17) }),
 				Hitbox({
@@ -51,8 +61,7 @@ export const UseMove = (world: World, owner: AnyEntity, move: Move) =>
 						})
 						.build(),
 				}),
-			);
-		},
+			),
 	});
 
 export interface IMove {
@@ -64,5 +73,5 @@ export interface IMove {
 export const StandComponents: { [index in Stand]: Component<{}>[] } = {
 	[Stand.Standless]: [],
 	[Stand.ZaShadow]: [],
-	[Stand.Kinesthesia]: [Dodging({ frame: -1 }), Moveset([Move.Jab({ damage: 15 }), Move.Teleport({ distance: 10 })])],
+	[Stand.Kinesthesia]: [Dodging({ frame: -1 }), Moveset([Move.Jab({ damage: 5 }), Move.Teleport()])],
 };
