@@ -9,16 +9,16 @@ import { FrameData } from "shared/types/frame-data";
 export function useFrameData<T extends defined>(frame_data: FrameData<T>, discrim?: number): Option<T> {
 	const storage = useHookState<{ time: number; next: number }>(discrim);
 	if (storage.time === undefined) {
-		storage.time = os.time();
+		storage.time = os.clock();
 	}
 
 	if (storage.next === undefined) {
 		storage.next = -1;
 	}
 
-	if (frame_data[storage.next + 1] && frame_data[storage.next + 1][0] + storage.time <= os.time()) {
+	if (frame_data[storage.next + 1] && frame_data[storage.next + 1][0] + storage.time <= os.clock()) {
 		storage.next++;
-		storage.time = os.time();
+		storage.time = os.clock();
 	}
 
 	const data = frame_data[storage.next];

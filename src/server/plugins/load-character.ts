@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-import { World } from "@rbxts/matter";
+import { AnyEntity, World } from "@rbxts/matter";
 import { BuildRagdollConstraints, SetRagdollEnabled } from "@rbxts/r15-ragdoll";
 import { Players, ReplicatedStorage, Workspace } from "@rbxts/services";
 import { Humanoid, PlayerLike, Renderable, Transform } from "shared/components";
@@ -66,7 +66,12 @@ function ReplaceRigParts(character: Instance) {
 export function LoadCharaterRig(world: World) {
 	Players.PlayerAdded.Connect((player) => {
 		player.CharacterAppearanceLoaded.Connect((character) => {
+			const humanoid = character.FindFirstChildOfClass("Humanoid")!;
 			ReplaceRigParts(character);
+			BuildRagdollConstraints(humanoid);
+			humanoid.Died.Connect(() => {
+				SetRagdollEnabled(humanoid, true);
+			});
 		});
 
 		player.CharacterAdded.Connect((character) => {

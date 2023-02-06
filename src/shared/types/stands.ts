@@ -8,15 +8,14 @@ export type Stand = keyof typeof Stand;
 export const Stand = {
 	Standless: "Standless",
 	ZaShadow: "ZaShadow",
-	Instinct: "Instinct",
+	Kinesthesia: "Kinesthesia",
 } as const;
 
-export interface IStand {
-	id: Stand;
-	extra_data?: Partial<IStandExtraData>;
-}
-
-export interface IStandExtraData {}
+export type IStand =
+	| { id: typeof Stand.ZaShadow; mode: "Time" | "Erasure" }
+	| {
+			id: Stand;
+	  };
 
 export type StandModel = Model & {
 	root: BasePart;
@@ -30,11 +29,11 @@ export type StandModel = Model & {
 
 export const StandToModel: { [index in Exclude<Stand, "Standless">]: StandModel } = {
 	[Stand.ZaShadow]: ReplicatedStorage.assets.stands.ZaShadow,
-	[Stand.Instinct]: ReplicatedStorage.assets.stands.ZaShadow,
+	[Stand.Kinesthesia]: ReplicatedStorage.assets.stands.ZaShadow,
 };
 
 export const StandToName: { [index in Stand]: string } = {
 	[Stand.Standless]: "Standless",
 	[Stand.ZaShadow]: "Za Shadow",
-	[Stand.Instinct]: "Instinct",
+	[Stand.Kinesthesia]: "Kinesthesia",
 };

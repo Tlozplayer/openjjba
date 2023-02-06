@@ -25,7 +25,7 @@ export interface IPlayerData {
 
 export const DefaultPlayerData: IPlayerData = {
 	stand: {
-		id: Stand.ZaShadow,
+		id: Stand.Kinesthesia,
 	},
 
 	inventory: [

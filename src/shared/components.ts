@@ -2,22 +2,26 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-import { AnyEntity, component } from "@rbxts/matter";
-import { IMove } from "./moves";
+import { AnyEntity, AnyComponent, component } from "@rbxts/matter";
+import { Effect } from "./effect";
+import { IMove, Move } from "./moves";
 import { FrameData } from "./types/frame-data";
 import { Item } from "./types/items";
 
+/* Utility */
 export const Renderable = component<{ model: Model }>("Renderable");
 export const Transform = component<{ cframe: CFrame; _doNotReconcile: boolean }>("Transform");
 export const Owner = component<{ owner: AnyEntity }>("Owner");
 export const Lifetime = component<{ expiry: number }>("Lifetime");
 
+/* Character */
 export const LocalPlayer = component("LocalPlayerComponent");
 export const PlayerLike = component("PlayerLike");
 export const Health = component<{ health: number }>();
 export const Humanoid = component<{ humanoid: Humanoid }>("Humanoid");
 
-export const Damage = component<{ amount: number }>();
+/* Effects */
+
 export const DamageQueue = component<{ queue: number[] }>("DamageQueue", { queue: [] });
 export const UsingMove = component<{ move: AnyEntity }>("UsingMove");
 
@@ -56,6 +60,7 @@ export const Hitbox = component<{
 	currentHit: AnyEntity[];
 	filter?: (AnyEntity | Instance)[];
 	frame_data: FrameData<SpacialHitbox>;
+	effects: Effect[];
 }>("Hitbox");
 
 export const CombatTag = component<{
@@ -63,9 +68,7 @@ export const CombatTag = component<{
 	damageMap: Map<AnyEntity, number>;
 }>("CombatTag");
 
-export const Moveset = component<IMove[]>("Moveset");
-export const Cooldown = component<{ on_cooldown: boolean; cooldown: number }>("Cooldown", {
-	on_cooldown: false,
-	cooldown: 0,
-});
+export const Moveset = component<Move[]>("Moveset");
+export const Cooldown = component<Map<Move[], number>>("Moveset");
+
 export const Stand = component("stand");

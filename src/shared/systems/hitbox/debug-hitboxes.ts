@@ -20,7 +20,7 @@ const HitboxWidget = Plasma.widget((world: World, id: AnyEntity, frame: SpacialH
 				Anchored: true,
 				CanCollide: false,
 				Material: Enum.Material.ForceField,
-				Color: Color3.fromRGB(252, 102, 41),
+				Color: Color3.fromHex("#FC2769"),
 			});
 			return ref["Part"];
 		});

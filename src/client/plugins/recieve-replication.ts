@@ -1,4 +1,5 @@
 // SPDX-FileCopyrightText: 2022 Ukendio
+// SPDX-FileCopyrightText: 2023 Christian Fletcher <mistrustfully@gmail.com>
 //
 // SPDX-License-Identifier: MIT
 
@@ -25,7 +26,10 @@ export function ReceiveReplication(world: World, state: IClientState): void {
 			let clientEntityId = entityIdMap.get(serverEntityId);
 
 			if (clientEntityId !== undefined && next(componentMap)[0] === undefined) {
-				world.despawn(clientEntityId);
+				if (world.contains(clientEntityId)) {
+					world.despawn(clientEntityId);
+				}
+
 				entityIdMap.delete(serverEntityId);
 				serverIdMap.delete(clientEntityId);
 				continue;
@@ -52,7 +56,7 @@ export function ReceiveReplication(world: World, state: IClientState): void {
 
 				entityIdMap.set(serverEntityId, clientEntityId);
 				serverIdMap.set(clientEntityId, serverEntityId);
-			} else {
+			} else if (world.contains(clientEntityId)) {
 				if (componentsToInsert.size() > 0) {
 					world.insert(clientEntityId, ...componentsToInsert);
 				}

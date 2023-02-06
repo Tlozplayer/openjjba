@@ -5,6 +5,7 @@
 import { World } from "@rbxts/matter";
 import { LocalPlayer, Moveset, Owner, UsingMove } from "shared/components";
 import { useGamejoyBind } from "shared/hooks/use-gamejoy";
+import { UseMove } from "shared/moves";
 import { IClientState } from "shared/types/state";
 
 function ProcessInputs(world: World, state: IClientState) {
@@ -14,9 +15,10 @@ function ProcessInputs(world: World, state: IClientState) {
 	for (const move of moveset) {
 		for (const [_] of useGamejoyBind(state.GamejoyContext, state.InputActions[move.keybind])) {
 			if (world.get(localentity, UsingMove) !== undefined) continue;
-
-			const id = world.spawn(Owner({ owner: localentity }), ...move.effects.map((effect) => table.clone(effect)));
-			world.insert(localentity, UsingMove({ move: id }));
+			const entity = UseMove(world, localentity, move);
+			if (entity !== undefined) {
+				world.insert(localentity, UsingMove({ move: entity }));
+			}
 		}
 	}
 }
