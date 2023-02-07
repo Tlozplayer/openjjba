@@ -4,10 +4,12 @@ SPDX-FileCopyrightText: 2022 Christian Fletcher <mistrustfully@gmail.com>
 SPDX-License-Identifier: CC0-1.0
 -->
 
-[![REUSE status](https://api.reuse.software/badge/github.com/Mistrustfully/openjjba)](https://api.reuse.software/info/github.com/Mistrustfully/openjjba)
-[![CI](https://github.com/Mistrustfully/openjjba/actions/workflows/commit.yml/badge.svg)](https://github.com/Mistrustfully/openjjba/actions/workflows/commit.yml)
-
-# OPEN-JJBA
+<div align="center">
+    <a href="https://api.reuse.software/info/github.com/Mistrustfully/openjjba"><img src="https://api.reuse.software/badge/github.com/Mistrustfully/openjjba" /></a>
+    <a herf="https://github.com/Mistrustfully/openjjba/actions/workflows/commit.yml"><img src="https://github.com/Mistrustfully/openjjba/actions/workflows/commit.yml/badge.svg" /></a>
+	<a href="https://discord.gg/JFvZY5JSBT"><img src="https://dcbadge.vercel.app/api/server/WJvRcgHn5B?style=flat" /></a>
+    <h1>OPENJJBA</hi>
+</div>
 
 An open source JJBA game.
 
@@ -26,6 +28,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Thanks to
 
--   [Ukendio](https://github.com/Ukendio/), for their [for-animia](https://github.com/Ukendio/for-animia/) project, which was helpful resource for writing certain systems.
--   [Osyris](https://github.com/osyrisrblx), for [Roblox-TS](https://roblox-ts.com), which allowed this project to be type-safe.
--   [Evaera](https://github.com/evaera), for the [Matter](https://github.com/evaera/matter) library, which this project uses extensively.
+-   [for-animia](https://github.com/Ukendio/for-animia/) for certain example code.
+-   [Roblox-TS](https://roblox-ts.com) for allowing Typescript to be used in Roblox.
+-   [Matter](https://github.com/evaera/matter), an ECS library we use extensively.
