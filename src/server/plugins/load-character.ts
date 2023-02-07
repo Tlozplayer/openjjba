@@ -4,7 +4,7 @@
 
 import { AnyEntity, World } from "@rbxts/matter";
 import { BuildRagdollConstraints, SetRagdollEnabled } from "@rbxts/r15-ragdoll";
-import { Players, ReplicatedStorage, Workspace } from "@rbxts/services";
+import { DataStoreService, Players, ReplicatedStorage, Workspace } from "@rbxts/services";
 import { Humanoid, PlayerLike, Renderable, Transform } from "shared/components";
 
 function GetR6PartFromR15(r15part: Enum.BodyPartR15): Enum.BodyPart | undefined {

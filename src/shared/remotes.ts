@@ -5,7 +5,6 @@
 import Net from "@rbxts/net";
 import { AnyComponent } from "@rbxts/matter";
 import { ComponentNames } from "shared/types/serde";
-import { Stand } from "./types/stands";
 import { IPlayerData } from "./types/player-data";
 import { DataStoreActions } from "./rodux/data-store";
 
@@ -15,8 +14,7 @@ const Remotes = Net.Definitions.Create({
 	PickupItem: Net.Definitions.ClientToServerEvent<[string]>(),
 
 	UseMove: Net.Definitions.ClientToServerEvent<[number]>(),
-	EndMove: Net.Definitions.ClientToServerEvent<[number]>(),
-	RecieveMove: Net.Definitions.ServerToClientEvent<[Stand, number]>(),
+	HitEntity: Net.Definitions.ClientToServerEvent<[string]>(),
 
 	MoveCooldownEnded: Net.Definitions.ServerToClientEvent<[number]>(),
 

@@ -10,6 +10,7 @@ type storage = {
 };
 
 function cleanup(storage: storage) {
+	if (storage.expiry === undefined) return true;
 	return os.clock() < storage.expiry;
 }
 

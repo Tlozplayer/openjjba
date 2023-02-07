@@ -62,6 +62,10 @@ function GetFilteredInstances(world: World, id: AnyEntity, extra_filtered?: (Ins
 
 function HitboxesCollide(world: World) {
 	for (const [id, hitbox] of world.query(Hitbox)) {
+		// If a player owns the hitbox, the server doesn't need to do any calculations
+		// since the player would already calculate the hits and such.
+		if (world.get(id, Owner) && RunService.IsServer()) continue;
+
 		const frame_option = useFrameData(hitbox.frame_data, id);
 		if (frame_option.isSome()) {
 			const frame = frame_option.unwrap();

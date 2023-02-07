@@ -7,6 +7,7 @@ import { Effect } from "./effect";
 import { IMove, Move } from "./moves";
 import { FrameData } from "./types/frame-data";
 import { Item } from "./types/items";
+import { StandModel } from "./types/stands";
 
 /* Utility */
 export const Renderable = component<{ model: Model }>("Renderable");
@@ -25,7 +26,7 @@ export const Humanoid = component<{ humanoid: Humanoid }>("Humanoid");
 export const DamageQueue = component<{ queue: number[] }>("DamageQueue", { queue: [] });
 export const UsingMove = component<{ move: AnyEntity }>("UsingMove");
 
-export const StandRig = component<{ model: Model }>("StandRig");
+export const StandRig = component<{ model: StandModel }>("StandRig");
 export const ItemComponent = component<{ id: Item }>("ItemComponent");
 export const Targetable = component("Targetable");
 export const Targeted = component<{}>("Targeted");
@@ -70,5 +71,3 @@ export const CombatTag = component<{
 
 export const Moveset = component<Move[]>("Moveset");
 export const Cooldown = component<Map<Move[], number>>("Moveset");
-
-export const Stand = component("stand");

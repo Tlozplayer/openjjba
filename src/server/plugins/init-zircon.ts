@@ -82,6 +82,22 @@ export function InitZircon(world: World, state: IServerState) {
 					.Build(),
 				[ZirconDefaultGroup.Creator],
 			)
+			.AddNamespace(
+				new ZirconNamespaceBuilder("effects")
+					.AddFunction(
+						new ZirconFunctionBuilder("set_stand")
+							.AddArgument("player")
+							.AddArgument(ZrStands)
+							.Bind((_, plr, stand) => {
+								state.PlayerData.get(plr)!.dispatch({
+									type: "SetStandAction",
+									stand: { id: StandNames[stand.getValue()] },
+								});
+							}),
+					)
+					.Build(),
+				[ZirconDefaultGroup.Creator],
+			)
 
 			.Build(),
 	);

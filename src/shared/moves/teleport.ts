@@ -3,11 +3,13 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 import { AnyEntity, World } from "@rbxts/matter";
-import { Workspace } from "@rbxts/services";
+import { RunService, Workspace } from "@rbxts/services";
 import { Humanoid, Transform } from "shared/components";
 import { Move } from ".";
 
 function TeleportMove(world: World, owner: AnyEntity, { distance }: Move<"Teleport">) {
+	if (RunService.IsServer()) return;
+
 	const [humanoid, transform] = world.get(owner, Humanoid, Transform);
 	const camera = Workspace.CurrentCamera;
 
