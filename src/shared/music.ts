@@ -9,7 +9,14 @@ export type Song = {
 };
 
 export const Music: { Casual: Song[]; Combat: Song[] } = {
-	Casual: [{ id: 10946356252, name: "Pretty Little Lies", artist: "Holizna" }], // https://freemusicarchive.org/music/holiznacc0/lo-fi-and-chill/pretty-little-lies-1/
+	Casual: [
+		{ id: 10946356252, name: "Pretty Little Lies", artist: "Holizna" },
+		{ id: 12406141007, name: "Bus Stop", artist: "Holizna" },
+		{ id: 12406147759, name: "Snow Drift", artist: "Holizna" },
+	],
 
-	Combat: [{ id: 10946120990, name: "PRIME TURBO", artist: "Jameskii" }],
+	Combat: [
+		{ id: 10946120990, name: "PRIME TURBO", artist: "Jameskii" },
+		{ id: 12406153874, name: "Tame Inner Demons", artist: "Komiku" },
+	],
 };

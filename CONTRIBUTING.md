@@ -60,3 +60,9 @@ todo
 ## Contributing Assets
 
 You can contribute assets by adding them to their respective folder in [assets](/assets). It's recommended to use [reuse](#installing-reuse) to properly license the asset. We also recommend licensing assets under `GPL-3.0-or-later`.
+
+### Music / Sounds
+
+Music should either be in the `.mp3` or `.ogg` formats. Due to Roblox's asset system audio needs to be uploaded and added to [src/shared/music.ts](src/shared/music.ts) to be playable in game. I can only upload 10 music assets each month, so keep that in mind when contributing music.
+
+There are two places to place music, [assets/sounds/music/casual](assets/sounds/music/casual) or [assets/sounds/music/combat](assets/sounds/music/combat/). Casual music is generally Lo-Fi, while combat music should faster paced.
